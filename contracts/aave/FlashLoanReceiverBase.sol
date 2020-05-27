@@ -1,4 +1,4 @@
-pragma solidity >0.6.6;
+pragma solidity ^0.6.6;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/math/SafeMath.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
@@ -32,7 +32,7 @@ abstract contract FlashLoanReceiverBase is IFlashLoanReceiver, Withdrawable {
             require(success == true, "Couldn't transfer ETH");
             return;
         }
-         IERC20(_reserve).transfer(_destination, _amount);
+        IERC20(_reserve).safeTransfer(_destination, _amount);
     }
 
     function getBalanceInternal(address _target, address _reserve) internal view returns(uint256) {
