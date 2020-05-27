@@ -32,7 +32,8 @@ contract FlashLoanReceiverBase is IFlashLoanReceiver, Withdrawable {
             _destination.call.value(_amount)("");
             return;
         }
-        IERC20(_reserve).transfer(_destination, _amount);    
+        IERC20(_reserve).transfer(_destination, _amount);
+        }
 
     function getBalanceInternal(address _target, address _reserve) internal view returns(uint256) {
         if(_reserve == EthAddressLib.ethAddress()) {
